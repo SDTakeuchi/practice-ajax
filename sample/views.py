@@ -30,6 +30,9 @@ def exec_ajax(request, pk):
 
     elif request.method == 'POST':  # POSTの処理
         data1 = request.POST.get("input_data")  # POSTで渡された値
+        location = Location(name=data1, memo="This memo is generated automatically.")
+        Location.objects.get(name="Berlin").delete()
+        location.save()
         logger.debug(data1)
         return HttpResponse(data1)
 
